@@ -1,0 +1,25 @@
+<h1>Welcome page</h1>
+
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "sign in", new_user_session_path %>
+  <% end %>
+
+<h2>Sign up</h2>
+
+<%= form_for(Admin.new, :as => :admin, :url => registration_path(:admin)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
