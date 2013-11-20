@@ -6,7 +6,7 @@ DeviseTest::Application.routes.draw do
   devise_for :admins
 
   # customizing default login/logout routes, views, actions
-  devise_for :users, :skip => [:sessions] do
+  devise_for :users do
       delete '/logout', :to => 'sessions#destroy', :as => :destroy_user_session
       get '/login', :to => 'sessions#new', :as => :new_user_session
       post '/login', :to => 'sessions#create', :as => :user_session
