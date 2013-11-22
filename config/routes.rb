@@ -3,10 +3,10 @@ DeviseTest::Application.routes.draw do
   resources :dashboard
 
   # routes
-  devise_for :admins
+  devise_for :admins, :skip => :sessions
 
   # customizing default login/logout routes, views, actions
-  devise_for :users do
+  devise_for :users, :skip => :registrations do
       delete '/logout', :to => 'sessions#destroy', :as => :destroy_user_session
       get '/login', :to => 'sessions#new', :as => :new_user_session
       post '/login', :to => 'sessions#create', :as => :user_session
@@ -60,6 +60,10 @@ DeviseTest::Application.routes.draw do
   #   end
 
   authenticated :user do
+    root :to => "dashboard#index"
+  end
+
+  authenticated :admin do
     root :to => "dashboard#index"
   end
 
