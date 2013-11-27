@@ -3,7 +3,7 @@ DeviseTest::Application.routes.draw do
   resources :dashboard
 
   # routes
-  devise_for :admins, :controllers => { :registrations => 'registrations' }, :skip => [:sessions]
+  devise_for :admins, :skip => :sessions, :controllers => { :registrations => "admin/registrations" }
 
   # customizing default login/logout routes, views, actions
   devise_for :users, :controllers => {:sessions  => 'sessions'} do
